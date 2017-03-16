@@ -1,7 +1,12 @@
 import { decorate } from './private/utils';
 
-function handleDescriptor(target, key, descriptor) {
+function handleDescriptor(target, key, descriptor, [options = {}]) {
   descriptor.enumerable = false;
+  
+  if (options.writable !== false) {
+    descriptor.writable = true;
+  }
+  
   return descriptor;
 }
 
